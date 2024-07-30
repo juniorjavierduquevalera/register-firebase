@@ -58,7 +58,7 @@ export default function Register() {
                 <p className="info nr4"></p>
                 <Button
                   type="submit"
-                  className="w-full h-auto mt-3 py-4 bg-btn-primary rounded-md"
+                  className="w-full h-auto mt-3 py-4 bg-btn-sumit-500 rounded-md"
                 >
                   Claim your free trial
                 </Button>

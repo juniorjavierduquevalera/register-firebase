@@ -11,11 +11,12 @@ const config: Config = {
       colors:{
         btn:{
           'primary':'hsl(248, 32%, 49%)',
+          'sumit-500': 'hsl(154, 59%, 51%)',
         }
       },
       backgroundImage: {
         'bg-base': 'url("/images/bg-intro-desktop.png")',
-        'emptyTextBox': 'url(/images/icon-error.svg)',
+        'emptyTextBox': 'url(/images/icon-error.svg)',        
       },
     },
   },
