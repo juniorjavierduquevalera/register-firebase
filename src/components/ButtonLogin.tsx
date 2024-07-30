@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useState, useEffect } from "react";
-import { createUser } from "../actions/userActions";
+import { userLoginFirebase } from "../actions/userLoginFirebase"; // Asegúrate de ajustar la ruta
 import { useRouter } from "next/navigation";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,10 +13,10 @@ interface Status {
   message: string;
 }
 
-const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
+const ButtonLogin: FC<ButtonProps> = ({ children, className, ...props }) => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<Status | null>(null);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -28,13 +28,13 @@ const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
     setLoading(true);
     setStatus(null);
     try {
-      await createUser(formData);
-      setStatus({ type: "success", message: "Registration successful!" });
+      await userLoginFirebase(formData);
+      setStatus({ type: "success", message: "Login successful!" });
       setTimeout(() => {
         router.push("/feed");
       }, 3000);
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Error logging in:", error);
       if (error instanceof Error) {
         setStatus({ type: "error", message: error.message });
       } else {
@@ -81,4 +81,4 @@ const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
   );
 };
 
-export default Button;
+export default ButtonLogin;
