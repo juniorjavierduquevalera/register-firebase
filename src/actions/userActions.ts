@@ -24,7 +24,7 @@ export const createUser = async (formData: FormData) => {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/api/register", {
+    const response = await fetch("https://register-firebase.vercel.app/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
