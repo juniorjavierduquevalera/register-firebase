@@ -1,6 +1,7 @@
 'use client';
 import React, { FC, useState, useEffect } from 'react';
-import { createUser } from "../actions/userActions"; // Asegúrate de que la ruta sea correcta
+import { createUser } from "../actions/userActions"; 
+import { useRouter } from 'next/navigation';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ interface Status {
 const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<Status | null>(null);
+  const router = useRouter();  // Hook de Next.js para manejar la navegación
 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -28,6 +30,7 @@ const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
     try {
       await createUser(formData);
       setStatus({ type: 'success', message: 'Registration successful!' });
+      router.push('/feed');  // Redirige a la ruta /feed
     } catch (error) {
       console.error("Error creating user:", error);
       if (error instanceof Error) {

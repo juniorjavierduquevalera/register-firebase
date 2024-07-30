@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Sign up to access our platform powered by Firebase. Enjoy seamless authentication, secure data storage, and robust backend services for your applications. Get started with easy-to-use tools that help you build and scale your projects efficiently."
 };
 
-export default function RootLayout({
+export default function RootLayout({ 
   children,
 }: Readonly<{
   children: React.ReactNode;
