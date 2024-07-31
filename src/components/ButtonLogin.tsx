@@ -1,7 +1,8 @@
 "use client";
 import React, { FC, useState, useEffect } from "react";
-import { userLoginFirebase } from "../actions/userLoginFirebase"; // Asegúrate de ajustar la ruta
+import { userLoginFirebase } from "../actions/userLoginFirebase";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -28,8 +29,9 @@ const ButtonLogin: FC<ButtonProps> = ({ children, className, ...props }) => {
     setLoading(true);
     setStatus(null);
     try {
-      await userLoginFirebase(formData);
-      setStatus({ type: "success", message: "Login successful!" });
+      const response = await userLoginFirebase(formData);
+      setStatus({ type: "success", message: response.message });
+      Cookies.set('token', response.token, { sameSite: 'strict', secure: true });
       setTimeout(() => {
         router.push("/feed");
       }, 3000);
@@ -82,3 +84,4 @@ const ButtonLogin: FC<ButtonProps> = ({ children, className, ...props }) => {
 };
 
 export default ButtonLogin;
+

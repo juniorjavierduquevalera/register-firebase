@@ -6,7 +6,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 export const POST = async (req: NextRequest) => {
   try {
     const { firstName, lastName, email, password } = await req.json();
-    // console.log('Request body:', { firstName, lastName, email, password });
 
     // Registrar usuario en Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);

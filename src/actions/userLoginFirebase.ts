@@ -1,9 +1,4 @@
-// actions/userLoginFirebase.ts
 "use server";
-
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
-import { FirebaseError } from "firebase/app";
 
 export const userLoginFirebase = async (formData: FormData) => {
   const email = formData.get("email") as string;
@@ -21,13 +16,27 @@ export const userLoginFirebase = async (formData: FormData) => {
   }
 
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    // Devolver solo la información esencial como un objeto plano
-    return { message: 'Login successful', email: userCredential.user.email };
-  } catch (error) {
-    if (error instanceof FirebaseError) {
-      console.error("Firebase error:", error.message);
-      throw new Error("Failed to log in. Please check your credentials and try again.");
+    const response = await fetch("https://register-firebase.vercel.app/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    console.log("Response status:", response.status);
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Something went wrong');
+    }
+
+    return { message: 'Login successful', token: data.token };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error:", error.message);
+      throw new Error(error.message || "An unknown error occurred. Please try again.");
     } else {
       console.error("Unknown error:", error);
       throw new Error("An unknown error occurred. Please try again.");

@@ -31,7 +31,7 @@ const Button: FC<ButtonProps> = ({ children, className, ...props }) => {
       await createUser(formData);
       setStatus({ type: "success", message: "Registration successful!" });
       setTimeout(() => {
-        router.push("/feed");
+        router.push("/login");
       }, 3000);
     } catch (error) {
       console.error("Error creating user:", error);
