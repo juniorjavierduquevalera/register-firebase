@@ -29,3 +29,13 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message: 'Error creating user' }, { status: 500 });
   }
 };
+
+// Nuevas opciones de configuración
+export const dynamic = 'auto';
+export const dynamicParams = true;
+export const revalidate = false;
+export const fetchCache = 'auto';
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
+export const maxDuration = 5;
+
