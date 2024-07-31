@@ -39,3 +39,7 @@ export const runtime = 'nodejs';
 export const preferredRegion = 'auto';
 export const maxDuration = 5;
 
+// Configuración específica de bodyParser
+export const api = {
+  bodyParser: false,
+};

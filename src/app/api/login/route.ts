@@ -32,5 +32,7 @@ export const maxDuration = 5;
 
 // Configuración específica de bodyParser
 export const api = {
-  bodyParser: false,
+  bodyParser: {
+    sizeLimit: '1mb', // Ajusta según tus necesidades
+  },
 };
