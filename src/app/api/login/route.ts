@@ -21,19 +21,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Nuevas opciones de configuración
-export const dynamic = 'auto';
-export const dynamicParams = true;
-export const revalidate = false;
-export const fetchCache = 'auto';
-export const runtime = 'nodejs';
-export const preferredRegion = 'auto';
-export const maxDuration = 5;
-
-// Configuración específica de bodyParser
-export const api = {
-  bodyParser: {
-    sizeLimit: '1mb', // Ajusta según tus necesidades
-  },
-};
 
